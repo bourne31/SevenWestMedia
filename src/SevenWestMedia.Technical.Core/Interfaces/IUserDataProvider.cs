@@ -3,7 +3,7 @@ using SevenWestMedia.Technical.Domain.Users;
 
 namespace SevenWestMedia.Technical.Core.Interfaces
 {
-    public interface IUserDataSource
+    public interface IUserDataProvider
     {
         IEnumerable<User> Users { get; }
     }

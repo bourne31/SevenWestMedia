@@ -7,23 +7,24 @@ namespace SevenWestMedia.Technical.Core.Services.User
 {
     public class UserService : IUserService
     {
-        private readonly IUserDataSource _userDataSource;
+        private readonly IUserDataProvider _userDataProvider;
 
-        public UserService(IUserDataSource userDataSource)
+        public UserService(IUserDataProvider userDataProvider)
         {
-            _userDataSource = userDataSource;
+            _userDataProvider = userDataProvider;
         }
 
         public UserModel GetUserById(int userId)
         {
-            var user = _userDataSource.Users
-                .Where(c => c.Id == userId)
+            var user = _userDataProvider.Users
+                ?.Where(c => c.Id == userId)
                 .Select(c => new UserModel
                 {
                     Id = c.Id,
                     FirstName = c.First,
                     LastName = c.Last,
-                    Age = c.Age
+                    Age = c.Age,
+                    Gender = c.Gender
                 })
                 .SingleOrDefault();
 
@@ -32,14 +33,15 @@ namespace SevenWestMedia.Technical.Core.Services.User
 
         public List<UserModel> GetUsersByAge(int userAge)
         {
-            var users = _userDataSource.Users
-                .Where(c => c.Age == userAge)
+            var users = _userDataProvider.Users
+                ?.Where(c => c.Age == userAge)
                 .Select(c => new UserModel
                 {
                     Id = c.Id,
                     FirstName = c.First,
                     LastName = c.Last,
-                    Age = c.Age
+                    Age = c.Age,
+                    Gender = c.Gender
                 })
                 .ToList();
 
@@ -51,8 +53,8 @@ namespace SevenWestMedia.Technical.Core.Services.User
             var maleGenderLabels = new List<string> {"MALE", "M"};
             var femaleGenderLabels = new List<string> {"FEMALE", "F"};
 
-            var users = _userDataSource.Users
-                .GroupBy(
+            var users = _userDataProvider.Users
+                ?.GroupBy(
                     c => c.Age,
                     c => c.Gender,
                     (key, genders) => new
@@ -69,6 +71,7 @@ namespace SevenWestMedia.Technical.Core.Services.User
                     NonBinaryCount = c.Genders.Count(g => !maleGenderLabels.Contains(g.ToUpper()) &&
                                                           !femaleGenderLabels.Contains(g.ToUpper()))
                 })
+                .OrderBy(c => c.Age)
                 .ToList();
 
             return users;
