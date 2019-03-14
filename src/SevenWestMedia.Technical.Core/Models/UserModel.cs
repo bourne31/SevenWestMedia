@@ -1,6 +1,6 @@
 ﻿namespace SevenWestMedia.Technical.Core.Models
 {
-    public class CustomerModel
+    public class UserModel
     {
         public int Id { get; set; }
 

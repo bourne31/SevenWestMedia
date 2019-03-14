@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SevenWestMedia.Technical.ConsoleApp.DependencyResolution;
+using SevenWestMedia.Technical.ConsoleApp.Printer;
 
 namespace SevenWestMedia.Technical.ConsoleApp
 {
@@ -6,7 +8,10 @@ namespace SevenWestMedia.Technical.ConsoleApp
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var serviceProvider = IoC.ConfigureServices();
+
+            var printer = serviceProvider.GetRequiredService<IPrinter>();
+            printer.Print();
         }
     }
 }

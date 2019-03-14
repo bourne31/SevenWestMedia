@@ -1,11 +1,9 @@
 ﻿using SevenWestMedia.Technical.Domain.Common;
 
-namespace SevenWestMedia.Technical.Domain.Customers
+namespace SevenWestMedia.Technical.Domain.Users
 {
-    public class Customer : IEntity
+    public class User : IEntity
     {
-        public int Id { get; set; }
-
         public string First { get; set; }
 
         public string Last { get; set; }
@@ -13,5 +11,6 @@ namespace SevenWestMedia.Technical.Domain.Customers
         public int Age { get; set; }
 
         public string Gender { get; set; }
+        public int Id { get; set; }
     }
 }
