@@ -23,7 +23,7 @@ This project contains the unit tests.
 
 
 ### Testability
-Since the pillar of the project architecture is dependency inversion, it means that the solution is testable. I have added unit tests in the solution and all use cases are covered just to make sure.
+Since the pillar of the project architecture is dependency inversion, it means that the solution is highly testable. I have added unit tests in the solution and all use cases are covered just to make sure.
 
 ### Readability
 I made sure that the project is easy to read, follow and understand by using naming methods and variables appropriately.
@@ -33,12 +33,14 @@ The core of the project is reusable since the use cases do not know who triggere
 
 ### Performance
 Since the number of user records may change in the file, it is very important to make sure that performance is not affected. So for the parsing of the Json file, it is recommended to read the
-json from stream as the size doesn't matter because only a small piece is read at a time from either file or from the HTTP request.
+json from stream as the json size doesn't matter because only a small part is read at a time from either file or from the HTTP request.
  
 ## How to run
 
 1. Clone the repo
 2. Open SevenWestMedia.Technical.sln in Visual Studio 2017
+3. Right click on the solution project
+4. Restore Nuget Packages
 3. Build
 4. Run [F5]
 
