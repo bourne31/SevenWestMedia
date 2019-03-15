@@ -34,7 +34,17 @@ The core of the project is reusable since the use cases do not know who triggere
 ### Performance
 Since the number of user records may change in the file, it is very important to make sure that performance is not affected. So for the parsing of the Json file, it is recommended to read the
 json from stream as the json size doesn't matter because only a small part is read at a time from either file or from the HTTP request.
- 
+
+
+####Considerations
+1. Data may change and the way source is fetched may change 
+   - Strategy pattern is used.
+2. The number of records may change 
+   - Read Json from stream
+3. The functionality may not always be consumed in console app 
+   - The domain, core and infrastructure can be consumed in other presentation layer (Web Api, Windows app, Web etc.).
+
+
 ## How to run
 
 1. Clone the repo
