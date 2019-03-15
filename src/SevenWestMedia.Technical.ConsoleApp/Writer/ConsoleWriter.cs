@@ -1,26 +1,41 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Logging;
 using SevenWestMedia.Technical.Core.Services.User;
 
 namespace SevenWestMedia.Technical.ConsoleApp.Writer
 {
     public class ConsoleWriter : IConsoleWriter
     {
+        private readonly ILogger<ConsoleWriter> _logger;
         private readonly IUserService _userService;
 
-        public ConsoleWriter(IUserService userService)
+        public ConsoleWriter(IUserService userService, ILogger<ConsoleWriter> logger)
         {
             _userService = userService;
+            _logger = logger;
         }
 
         public void Write(int userId, int userAge)
         {
+            var logInfo = new
+            {
+                UserId = userId,
+                UserAge = userAge
+            };
+
+            _logger.LogInformation("Begin writing filter results to console.",
+                logInfo);
+
             WriteUserFullNameById(userId);
 
             WriteUserFirstNamesByAge(userAge);
 
             WriteUsersGroupByAge();
+
+            _logger.LogInformation("Finished writing filter results to console.",
+                logInfo);
 
             Console.WriteLine("Press any key to exit...");
         }

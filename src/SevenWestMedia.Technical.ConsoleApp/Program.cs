@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
-using SevenWestMedia.Technical.ConsoleApp.DependencyResolution;
+using SevenWestMedia.Technical.ConsoleApp.Dependencies;
 using SevenWestMedia.Technical.ConsoleApp.Writer;
 
 namespace SevenWestMedia.Technical.ConsoleApp
@@ -11,10 +11,10 @@ namespace SevenWestMedia.Technical.ConsoleApp
         {
             var serviceProvider = IoC.ConfigureServices();
 
-            const int userId = 42;
-            const int userAge = 23;
+            const int userIdFilter = 42;
+            const int userAgeFilter = 23;
             var consoleWriter = serviceProvider.GetRequiredService<IConsoleWriter>();
-            consoleWriter.Write(userId, userAge);
+            consoleWriter.Write(userIdFilter, userAgeFilter);
 
             Console.Read();
         }

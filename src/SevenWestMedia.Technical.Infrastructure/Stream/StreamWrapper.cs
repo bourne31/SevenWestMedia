@@ -1,10 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿using System;
 using System.IO;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace SevenWestMedia.Technical.Infrastructure.Stream
 {
     public class StreamWrapper : IStreamWrapper
     {
+        private readonly ILogger<StreamWrapper> _logger;
+
+        public StreamWrapper(ILogger<StreamWrapper> logger)
+        {
+            _logger = logger;
+        }
+
         public T ReadFromStream<T>(string templateFilePath)
         {
             try
@@ -19,9 +28,9 @@ namespace SevenWestMedia.Technical.Infrastructure.Stream
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                //TODO: add error logging
+                _logger.LogError(ex, "Unable to open file or parse json content.");
                 return default(T);
             }
         }
