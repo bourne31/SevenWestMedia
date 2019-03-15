@@ -80,5 +80,41 @@ namespace SevenWestMedia.Technical.Tests.Core.Services
             Assert.That(result.FemaleCount, Is.EqualTo(0));
             Assert.That(result.NonBinaryCount, Is.EqualTo(0));
         }
+
+        [Test]
+        public void TestGetUserByIdShouldReturnNull()
+        {
+            _mocker.GetMock<IUserDataProvider>()
+                .Setup(u => u.Users)
+                .Returns((List<User>)null);
+
+            var result = _userService.GetUserById(Id);
+
+            Assert.That(result, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void TestGetUsersByAgeShouldReturnNull()
+        {
+            _mocker.GetMock<IUserDataProvider>()
+                .Setup(u => u.Users)
+                .Returns((List<User>)null);
+
+            var result = _userService.GetUsersByAge(Age);
+
+            Assert.That(result, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void TestGetUsersGroupByAgeShouldReturnNull()
+        {
+            _mocker.GetMock<IUserDataProvider>()
+                .Setup(u => u.Users)
+                .Returns((List<User>)null);
+
+            var result = _userService.GetUsersGroupByAge();
+
+            Assert.That(result, Is.EqualTo(null));
+        }
     }
 }

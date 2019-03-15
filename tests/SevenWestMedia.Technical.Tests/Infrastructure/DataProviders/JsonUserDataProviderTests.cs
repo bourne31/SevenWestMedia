@@ -56,5 +56,17 @@ namespace SevenWestMedia.Technical.Tests.Infrastructure.DataProviders
             Assert.That(result.Age, Is.EqualTo(Age));
             Assert.That(result.Gender, Is.EqualTo(Gender));
         }
+
+        [Test]
+        public void TestGetUsersShouldReturnNull()
+        {
+            _mocker.GetMock<IStreamWrapper>()
+                .Setup(u => u.ReadFromStream<IEnumerable<User>>(It.IsAny<string>()))
+                .Returns((List<User>)null);
+
+            var results = _userDataProvider.Users;
+
+            Assert.That(results, Is.EqualTo(null));
+        }
     }
 }
