@@ -51,8 +51,9 @@ json from stream as the json size doesn't matter because only a small part is re
 2. Open SevenWestMedia.Technical.sln in Visual Studio 2017
 3. Right click on the solution project
 4. Restore Nuget Packages
-3. Build
-4. Run [F5]
+5. Build
+6. Set SevenWestMedia.Technical.Consoleapp as Startup project
+7. Run [F5]
 
 
 
