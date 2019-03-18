@@ -1,6 +1,6 @@
-# SevenWestMedia Technical Assignment
+# Technical Assignment
 
-This repository contains my solution for the SevenWestMedia technical assignment. I designed the project in such a way that it meets the following criteria:
+I designed the project in such a way that it meets the following criteria:
 
 ### Structure of the application
 
